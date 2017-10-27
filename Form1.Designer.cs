@@ -274,7 +274,7 @@
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(175, 41);
             this.label2.TabIndex = 5;
-            this.label2.Text = "SCORE";
+            this.label2.Text = "ОНОО";
             this.label2.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // lblGameOver
@@ -282,11 +282,11 @@
             this.lblGameOver.BackColor = System.Drawing.Color.White;
             this.lblGameOver.Font = new System.Drawing.Font("Microsoft Sans Serif", 71.99999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblGameOver.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
-            this.lblGameOver.Location = new System.Drawing.Point(32, 184);
+            this.lblGameOver.Location = new System.Drawing.Point(12, 184);
             this.lblGameOver.Name = "lblGameOver";
-            this.lblGameOver.Size = new System.Drawing.Size(624, 119);
+            this.lblGameOver.Size = new System.Drawing.Size(675, 119);
             this.lblGameOver.TabIndex = 6;
-            this.lblGameOver.Text = "Game Over !!!";
+            this.lblGameOver.Text = "Хожигдлоо !!!";
             this.lblGameOver.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.lblGameOver.Visible = false;
             // 
@@ -298,7 +298,7 @@
             this.btnNewGame.Name = "btnNewGame";
             this.btnNewGame.Size = new System.Drawing.Size(240, 58);
             this.btnNewGame.TabIndex = 7;
-            this.btnNewGame.Text = "New Game";
+            this.btnNewGame.Text = "Шинээр эхлэх";
             this.btnNewGame.UseVisualStyleBackColor = false;
             this.btnNewGame.Visible = false;
             this.btnNewGame.Click += new System.EventHandler(this.btnNewGame_Click);
@@ -313,7 +313,7 @@
             this.btnExit.Name = "btnExit";
             this.btnExit.Size = new System.Drawing.Size(240, 58);
             this.btnExit.TabIndex = 8;
-            this.btnExit.Text = "Exit";
+            this.btnExit.Text = "Дуусгах";
             this.btnExit.UseVisualStyleBackColor = false;
             this.btnExit.Visible = false;
             this.btnExit.Click += new System.EventHandler(this.btnExit_Click);
@@ -338,35 +338,35 @@
             this.continueToolStripMenuItem,
             this.exitToolStripMenuItem});
             this.menuToolStripMenuItem.Name = "menuToolStripMenuItem";
-            this.menuToolStripMenuItem.Size = new System.Drawing.Size(50, 20);
-            this.menuToolStripMenuItem.Text = "Menu";
+            this.menuToolStripMenuItem.Size = new System.Drawing.Size(40, 20);
+            this.menuToolStripMenuItem.Text = "Цэс";
             // 
             // newGameToolStripMenuItem
             // 
             this.newGameToolStripMenuItem.Name = "newGameToolStripMenuItem";
-            this.newGameToolStripMenuItem.Size = new System.Drawing.Size(132, 22);
-            this.newGameToolStripMenuItem.Text = "New Game";
+            this.newGameToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.newGameToolStripMenuItem.Text = "Шинээр эхлэх";
             this.newGameToolStripMenuItem.Click += new System.EventHandler(this.newGameToolStripMenuItem_Click);
             // 
             // continueToolStripMenuItem
             // 
             this.continueToolStripMenuItem.Name = "continueToolStripMenuItem";
-            this.continueToolStripMenuItem.Size = new System.Drawing.Size(132, 22);
-            this.continueToolStripMenuItem.Text = "Continue";
+            this.continueToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.continueToolStripMenuItem.Text = "Үргэлжлүүлэх";
             this.continueToolStripMenuItem.Click += new System.EventHandler(this.continueToolStripMenuItem_Click);
             // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(132, 22);
-            this.exitToolStripMenuItem.Text = "Exit";
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.exitToolStripMenuItem.Text = "Гарах";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
             // aboutToolStripMenuItem
             // 
             this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
-            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(52, 20);
-            this.aboutToolStripMenuItem.Text = "About";
+            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(50, 20);
+            this.aboutToolStripMenuItem.Text = "Тухай";
             this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
             // 
             // lblAbout
@@ -412,7 +412,7 @@
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "Game2048";
-            this.Text = "2048 by phuchoa3t";
+            this.Text = "2048 Тоглоом";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Form1_KeyDown);
             this.menuStrip1.ResumeLayout(false);

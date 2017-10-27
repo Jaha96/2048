@@ -15,12 +15,12 @@ namespace game2048
     {
         Random Rd = new Random();
         bool playing = true;
-        static ArrayList mangChiSoRong = new ArrayList();
+        static ArrayList freeCells = new ArrayList();
         public Game2048()
         {
             InitializeComponent();
         }
-        public void CapNhatMau()
+        public void drawDigits()
         {
             Label[,] Game = { 
                                 {lbl1,lbl2,lbl3,lbl4},
@@ -107,8 +107,8 @@ namespace game2048
             
         }
         
-        public void KhoiTaoManGame() {
-            mangChiSoRong.Clear();
+        public void startNewGame() {
+            freeCells.Clear();
 
             Label[,] Game = { 
                                 {lbl1,lbl2,lbl3,lbl4},
@@ -121,14 +121,14 @@ namespace game2048
                 for (int j = 0; j < 4;j++)
                 {
                     if(Game[i,j].Text==""){
-                        mangChiSoRong.Add(i*4+j+1);
+                        freeCells.Add(i*4+j+1);
                     }
                 }
             }
             
-            if(mangChiSoRong.Count>0){
+            if(freeCells.Count>0){
                
-                int chiSoHinh = int.Parse(mangChiSoRong[Rd.Next(0,mangChiSoRong.Count-1)].ToString());
+                int chiSoHinh = int.Parse(freeCells[Rd.Next(0,freeCells.Count-1)].ToString());
                 int i0 = (chiSoHinh - 1) / 4;
                 int j0 = (chiSoHinh - 1) - i0 *4;
                 int NgauNhien = Rd.Next(1,10);
@@ -141,7 +141,7 @@ namespace game2048
                 }
 
             }
-            CapNhatMau();
+            drawDigits();
         }
         public void LenTren() {
             bool khongLenDuoc = true;
@@ -227,15 +227,15 @@ namespace game2048
                 }
             }
             if(kTraKhoiTao==true){
-                KhoiTaoManGame();
+                startNewGame();
             }
         }
        
         private void Form1_Load(object sender, EventArgs e)
         {
-            KhoiTaoManGame();
-            KhoiTaoManGame();
-            KhoiTaoManGame();
+            startNewGame();
+            startNewGame();
+            startNewGame();
         }
         public void XuongDuoi()
         {
@@ -329,7 +329,7 @@ namespace game2048
             }
             if (kTraKhoiTao == true)
             {
-                KhoiTaoManGame();
+                startNewGame();
             }
         }
         public void SangTrai()
@@ -426,7 +426,7 @@ namespace game2048
             }
             if (kTraKhoiTao == true)
             {
-                KhoiTaoManGame();
+                startNewGame();
             }
         }
         public void SangPhai()
@@ -521,7 +521,7 @@ namespace game2048
             }
             if (kTraKhoiTao == true)
             {
-                KhoiTaoManGame();
+                startNewGame();
             }
         }
         public bool KetThuc() {
@@ -631,9 +631,9 @@ namespace game2048
                     Game[i, j].Text = "";
                 }
             }
-            KhoiTaoManGame();
-            KhoiTaoManGame();
-            KhoiTaoManGame();
+            startNewGame();
+            startNewGame();
+            startNewGame();
             
         }
 
@@ -644,12 +644,8 @@ namespace game2048
 
         private void newGameToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            
-            label1.Visible = true;
-            pictureBox1.Visible = true;
             continueToolStripMenuItem.Visible = true;
             lblAbout.Visible = false;
-            ptbImage.Visible = false;
             label2.Visible = true;
             lblScore.Visible = true;
 
@@ -677,17 +673,14 @@ namespace game2048
                     Game[i, j].Text = "";
                 }
             }
-            KhoiTaoManGame();
-            KhoiTaoManGame();
-            KhoiTaoManGame();
+            startNewGame();
+            startNewGame();
+            startNewGame();
         }
 
         private void continueToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            label1.Visible = true;
-            pictureBox1.Visible = true;
                 lblAbout.Visible = false;
-                ptbImage.Visible = false;
                 label2.Visible = true;
                 lblScore.Visible = true;
 
@@ -717,8 +710,6 @@ namespace game2048
 
         private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            pictureBox1.Visible = false;
-            label1.Visible = false;
             lblGameOver.Visible = false;
             lblScore.Visible = false;
             label2.Visible = false;
@@ -727,14 +718,8 @@ namespace game2048
             lblAbout.Visible = true;
             lblAbout.Location = new System.Drawing.Point(0,41);
             lblAbout.Dock = System.Windows.Forms.DockStyle.Fill;
-            lblAbout.Text = @"Code by phuchoa3t
-
-                                  Facebook : facebook.com/hackermuxam
-
-                Email : phuchoa3t@gmail.com
-                                ";
+            lblAbout.Text = "2048 тоглоом";
             lblAbout.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            ptbImage.Visible = true;
             Label[,] Game = { 
                                 {lbl1,lbl2,lbl3,lbl4},
                                 {lbl5,lbl6,lbl7,lbl8},
