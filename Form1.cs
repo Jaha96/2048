@@ -128,11 +128,11 @@ namespace game2048
             
             if(freeCells.Count>0){
                
-                int chiSoHinh = int.Parse(freeCells[Rd.Next(0,freeCells.Count-1)].ToString());
-                int i0 = (chiSoHinh - 1) / 4;
-                int j0 = (chiSoHinh - 1) - i0 *4;
-                int NgauNhien = Rd.Next(1,10);
-                if (NgauNhien == 1 || NgauNhien == 2 || NgauNhien == 3 || NgauNhien == 4 || NgauNhien == 5||NgauNhien==6 )
+                int random = int.Parse(freeCells[Rd.Next(0,freeCells.Count-1)].ToString());
+                int i0 = (random - 1) / 4;
+                int j0 = (random - 1) - i0 *4;
+                int randomCell = Rd.Next(1,10);
+                if (randomCell == 1 || randomCell == 2 || randomCell == 3 || randomCell == 4 || randomCell == 5|| randomCell == 6 )
                 {
                     Game[i0, j0].Text = "2";
                 }
@@ -143,93 +143,6 @@ namespace game2048
             }
             drawDigits();
         }
-        public void LenTren() {
-            bool khongLenDuoc = true;
-            bool anDiem = false;
-            bool kTraKhoiTao = false;
-            Label[,] Game = { 
-                                {lbl1,lbl2,lbl3,lbl4},
-                                {lbl5,lbl6,lbl7,lbl8},
-                                {lbl9,lbl10,lbl11,lbl12},
-                                {lbl13,lbl14,lbl15,lbl16}
-                              };
-            for (int i = 0; i < 4;i++ )
-            {
-                int oRong = 0;
-                for (int j = 0; j < 4;j++ )
-                {
-                    for (int k = j+1; k < 4;k++ )
-                    {
-                        if(Game[k,i].Text!=""){
-                            if(Game[k,i].Text==Game[j,i].Text){
-                                anDiem = true;
-                            }
-                            break;
-                        }
-                    }
-                    if (Game[j, i].Text == "")
-                    {
-                        oRong++;
-                    }
-                    else {
-                        for (int m = j; m >= 0;m-- )
-                        {
-                            if(Game[m,i].Text==""){
-                                kTraKhoiTao = true;
-                                break;
-                            }
-                        }
-                        if (j + 1 < 4)
-                        {
-                            bool ktra = true;
-                            
-                            for (int k = j + 1; k < 4; k++)
-                            {
-                                if (Game[k, i].Text != "")
-                                {
-                                    if (Game[j, i].Text == Game[k, i].Text)
-                                    {
-                                        khongLenDuoc = false;
-                                        lblScore.Text = (int.Parse(lblScore.Text) + int.Parse(Game[ j,i].Text) * 2).ToString();
-                                        kTraKhoiTao = true;
-                                        ktra = false;
-                                        Game[j, i].Text = (int.Parse(Game[j, i].Text) * 2).ToString();
-                                        if(oRong!=0){
-                                            Game[j - oRong, i].Text = Game[j, i].Text;
-                                            Game[j, i].Text = "";
-                                            
-                                        }
-                                        Game[k, i].Text = "";
-                                        break;
-                                        
-                                    }
-                                    break;
-                                }
-                            }
-                            if(ktra==true && oRong!=0){
-                                khongLenDuoc = false;
-                                Game[j - oRong, i].Text = Game[j, i].Text;
-                                Game[j, i].Text = "";
-                                
-                            }
-                        }
-                        else {
-                            if(oRong!=0){
-                                khongLenDuoc = false;
-                                Game[j - oRong, i].Text = Game[j, i].Text;
-                                Game[j, i].Text = "";
-                                
-                            }
-                        }
-                        
-                       
-                    }
-                }
-            }
-            if(kTraKhoiTao==true){
-                startNewGame();
-            }
-        }
        
         private void Form1_Load(object sender, EventArgs e)
         {
@@ -237,10 +150,89 @@ namespace game2048
             startNewGame();
             startNewGame();
         }
-        public void XuongDuoi()
+        public void keyUp()
         {
-            bool khongXuongDuoc = true;
-            bool anDiem = false;
+            bool kTraKhoiTao = false;
+            Label[,] Game = {
+                                {lbl1,lbl2,lbl3,lbl4},
+                                {lbl5,lbl6,lbl7,lbl8},
+                                {lbl9,lbl10,lbl11,lbl12},
+                                {lbl13,lbl14,lbl15,lbl16}
+                              };
+            for (int i = 0; i < 4; i++)
+            {
+                int oRong = 0;
+                for (int j = 0; j < 4; j++)
+                {
+                    if (Game[j, i].Text == "")
+                    {
+                        oRong++;
+                    }
+                    else
+                    {
+                        for (int m = j; m >= 0; m--)
+                        {
+                            if (Game[m, i].Text == "")
+                            {
+                                kTraKhoiTao = true;
+                                break;
+                            }
+                        }
+                        if (j + 1 < 4)
+                        {
+                            bool ktra = true;
+
+                            for (int k = j + 1; k < 4; k++)
+                            {
+                                if (Game[k, i].Text != "")
+                                {
+                                    if (Game[j, i].Text == Game[k, i].Text)
+                                    {
+                                        lblScore.Text = (int.Parse(lblScore.Text) + int.Parse(Game[j, i].Text) * 2).ToString();
+                                        kTraKhoiTao = true;
+                                        ktra = false;
+                                        Game[j, i].Text = (int.Parse(Game[j, i].Text) * 2).ToString();
+                                        if (oRong != 0)
+                                        {
+                                            Game[j - oRong, i].Text = Game[j, i].Text;
+                                            Game[j, i].Text = "";
+
+                                        }
+                                        Game[k, i].Text = "";
+                                        break;
+
+                                    }
+                                    break;
+                                }
+                            }
+                            if (ktra == true && oRong != 0)
+                            {
+                                Game[j - oRong, i].Text = Game[j, i].Text;
+                                Game[j, i].Text = "";
+
+                            }
+                        }
+                        else
+                        {
+                            if (oRong != 0)
+                            {
+                                Game[j - oRong, i].Text = Game[j, i].Text;
+                                Game[j, i].Text = "";
+
+                            }
+                        }
+
+
+                    }
+                }
+            }
+            if (kTraKhoiTao == true)
+            {
+                startNewGame();
+            }
+        }
+        public void keyDown()
+        {
             bool kTraKhoiTao = false;
             Label[,] Game = { 
                                 {lbl1,lbl2,lbl3,lbl4},
@@ -255,10 +247,7 @@ namespace game2048
                 {
                     for (int k = j - 1; k >= 0;k-- )
                     {
-                        if(Game[k,i].Text!=""){
-                            if(Game[k,i].Text==Game[j,i].Text){
-                                anDiem = true;
-                            }
+                        if (Game[k, i].Text != "") {
                             break;
                         }
                     }
@@ -286,7 +275,6 @@ namespace game2048
                                 {
                                     if (Game[j, i].Text == Game[k, i].Text)
                                     {
-                                        khongXuongDuoc = false;
                                         lblScore.Text = (int.Parse(lblScore.Text) + int.Parse(Game[ j,i].Text) * 2).ToString();
                                         kTraKhoiTao = true;
                                         ktra = false;
@@ -306,7 +294,6 @@ namespace game2048
                             }
                             if (ktra == true && oRong != 0)
                             {
-                                khongXuongDuoc = false;
                                 Game[j + oRong, i].Text = Game[j, i].Text;
                                 Game[j, i].Text = "";
                                 
@@ -316,7 +303,6 @@ namespace game2048
                         {
                             if (oRong != 0)
                             {
-                                khongXuongDuoc = false;
                                 Game[j + oRong, i].Text = Game[j, i].Text;
                                 Game[j, i].Text = "";
                                 
@@ -332,10 +318,8 @@ namespace game2048
                 startNewGame();
             }
         }
-        public void SangTrai()
+        public void keyLeft()
         {
-            bool khongSangTraiDuoc=true;
-            bool anDiem = false;
             bool kTraKhoiTao = false;
             Label[,] Game = { 
                                 {lbl1,lbl2,lbl3,lbl4},
@@ -352,9 +336,6 @@ namespace game2048
                     for (int k = j + 1; k < 4;k++ )
                     {
                         if(Game[i,k].Text!=""){
-                            if(Game[i,j].Text==Game[i,k].Text){
-                                anDiem = true;
-                            }
                             break;
                         }
                     }
@@ -383,7 +364,6 @@ namespace game2048
                                     
                                     if (Game[i,j].Text == Game[i,k].Text)
                                     {
-                                        khongSangTraiDuoc = false;
                                         lblScore.Text = (int.Parse(lblScore.Text) + int.Parse(Game[i, j].Text) * 2).ToString();
                                         kTraKhoiTao = true;
                                         ktra = false;
@@ -403,7 +383,6 @@ namespace game2048
                             }
                             if (ktra == true && oRong != 0)
                             {
-                                khongSangTraiDuoc = false;
                                 Game[i,j - oRong].Text = Game[i,j].Text;
                                 Game[i,j].Text = "";
                                
@@ -413,7 +392,6 @@ namespace game2048
                         {
                             if (oRong != 0)
                             {
-                                khongSangTraiDuoc = false;
                                 Game[i,j - oRong].Text = Game[i, j].Text;
                                 Game[i,j].Text = "";
                                 
@@ -429,10 +407,8 @@ namespace game2048
                 startNewGame();
             }
         }
-        public void SangPhai()
+        public void keyRight()
         {
-            bool khongSangPhaiDuoc = true;
-            bool anDiem=false;
             bool kTraKhoiTao = false;
             Label[,] Game = { 
                                 {lbl1,lbl2,lbl3,lbl4},
@@ -445,12 +421,10 @@ namespace game2048
                 int oRong = 0;
                 for (int j = 3; j >= 0; j--)
                 {
-                    for (int k = j - 1; k >= 0;k-- )
+                    for (int k = j - 1; k >= 0; k--)
                     {
-                        if(Game[i,k].Text!=""){
-                            if(Game[i,k].Text==Game[i,j].Text){
-                                anDiem = true;
-                            }
+                        if (Game[i, k].Text != "")
+                        {
                             break;
                         }
                     }
@@ -480,7 +454,6 @@ namespace game2048
                                     
                                     if (Game[i,j].Text == Game[i,k].Text)
                                     {
-                                        khongSangPhaiDuoc = false;
                                         lblScore.Text = (int.Parse(lblScore.Text) + int.Parse(Game[i, j].Text) * 2).ToString();
                                         kTraKhoiTao = true;
                                         ktra = false;
@@ -500,7 +473,6 @@ namespace game2048
                             }
                             if (ktra == true && oRong != 0)
                             {
-                                khongSangPhaiDuoc = false;
                                 Game[i,j+ oRong].Text = Game[i,j].Text;
                                 Game[ i,j].Text = "";
                                 
@@ -510,7 +482,6 @@ namespace game2048
                         {
                             if (oRong != 0)
                             {
-                                khongSangPhaiDuoc = false;
                                 Game[ i,j + oRong].Text = Game[ i,j].Text;
                                 Game[ i,j].Text = "";
                                 
@@ -524,7 +495,7 @@ namespace game2048
                 startNewGame();
             }
         }
-        public bool KetThuc() {
+        public bool isNoChance() {
             Label[,] Game = { 
                                 {lbl1,lbl2,lbl3,lbl4},
                                 {lbl5,lbl6,lbl7,lbl8},
@@ -574,29 +545,29 @@ namespace game2048
         }
         private void Form1_KeyDown(object sender, KeyEventArgs e)
         {
-            if (KetThuc() == false)
+            if (isNoChance() == false)
             {
                 if (e.KeyCode == Keys.Up)
                 {
-                    LenTren();
+                    keyUp();
 
                 }
                 if (e.KeyCode == Keys.Down)
                 {
-                    XuongDuoi();
+                    keyDown();
                 }
                 if (e.KeyCode == Keys.Left)
                 {
-                    SangTrai();
+                    keyLeft();
                 }
                 if (e.KeyCode == Keys.Right)
                 {
-                    SangPhai();
+                    keyRight();
                 }
             }
             else {
                 continueToolStripMenuItem.Visible = false;
-                lblGameOver.Text = "Game Over !!!!!!!!!!!!!!!!!";
+                lblGameOver.Text = "Хожигдлоо !!!";
                 playing = false;
                 lblGameOver.Visible = true;
                 btnNewGame.Visible = true;
